@@ -8,3 +8,5 @@ La idea de las dos primeras escenas es presentar situaciones en las que vemos la
 
 ### Instrucciones
 Descargar el proyecto y ejecutar la primera escena desde un servidor local. Por ejemplo, se puede instalar el paquete *atom-live-server-plus* desde Atom y ejecutarlo desde ahí.
+
+Para desplazarnos en el entorno se utilizan las teclas WASD y para mover la vista, el ratón. Para interactuar con los objetos hay que centrar el cursor de la vista en el objetivo durante unos segundos.
