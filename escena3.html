@@ -1,0 +1,251 @@
+<html>
+<head>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+</head>
+
+<body>
+  <a-scene background="color:black">
+    <!-- camara i cursor -->
+    <a-entity camera look-controls wasd-controls>
+      <a-entity
+        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+        animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+        position="0 0 -1"
+        geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015;"
+        cursor="fuse: true; fuseTimeout: 2200">
+      </a-entity>
+    </a-entity>
+
+    <a-assets>
+      <a-assets-items id="tele1" src="media/3d/tele1.obj"></a-assets-items>
+      <a-assets-items id="tele-mtl" src="media/3d/tele1.mtl"></a-assets-items>
+
+      <a-assets-items id="elevator-mtl" src="media/3d/Elevator.mtl"></a-assets-items>
+      <a-assets-items id="elevator-obj" src="media/3d/Elevator.obj"></a-assets-items>
+
+      <!-- estos son los assets de los videos. Podemos cambiar los videos facilmente (personalmente, el de Elisa, el que tiene música y es más ficcional, a mi no me convence) -->
+      <video id="farocki" src="media/video/farocki.mp4" loop="true" autoplay></video>
+      <video id="v" src="media/video/v.mp4" loop="true" autoplay></video>
+      <video id="pantalla" src="media/video/pantalla.mp4" loop="true" autoplay></video>
+      <video id="rick" src="media/video/rick.mp4" loop="true" autoplay></video>
+      <video id="tedtalk" src="media/video/tedtalk.mp4" loop="true" autoplay></video>
+
+      <img id="exit" src="media/images/exit.jpg"></img>
+      <img id="textu_boton" src="media/images/textu_boton.jpg"></img>
+    </a-assets>
+
+
+    <!-- particules -->
+    <a-entity position="0 2.25 -15" particle-system="color: grey,white; particleCount:500; preset:dust"></a-entity>
+
+    <!-- llum -->
+    <a-entity light="type:point; castShadow:true; intensity:1.9; color:#887877; distance:200;" position="0 4 -5"></a-entity>
+
+    <!-- llum ascensor -->
+    <a-entity light="type:point; castShadow:true; intensity:1; color:gray; distance:15;" position="0 2 16"></a-entity>
+
+
+    <!-- las teles tienen una box encima ya que el modelo 3d no se adaptaba bien con los vídeos -->
+    <!-- tele central -->
+    <a-obj-model src="#tele1" mtl="#tele-mtl" scale="5 5 5" position="0 1 -10" rotation="0 180 0" shadow="cast:true"></a-obj-model>
+    <a-box color="#55828F" scale="4.1 2.65 1.1" position="-0.72 1.22 -9.91"></a-box>
+    <!-- tele esquerra en diagonal -->
+    <a-obj-model src="#tele1" mtl="#tele-mtl" scale="5 5 5" position="-10 1 -7" rotation="0 225 0" shadow="cast:true"></a-obj-model>
+    <a-box color="#55828F" scale="4.1 2.65 1.1" position="-10.40 1.22 -6.35" rotation="0 225 0"></a-box>
+    <!-- tele esquerra 90º -->
+    <a-obj-model src="#tele1" mtl="#tele-mtl" scale="5 5 5" position="-15 1 3" rotation="0 280 0" shadow="cast:true"></a-obj-model>
+    <a-box color="#55828F" scale="4.1 2.65 1.1" position="-14.747 1.220 3.733" rotation="0 280 0"></a-box>
+    <!--tele dreta en diagonal -->
+    <a-obj-model src="#tele1" mtl="#tele-mtl" scale="5 5 5" position="10 1 -7" rotation="0 135 0" shadow="cast:true"></a-obj-model>
+    <a-box color="#55828F" scale="4.1 2.65 1.1" position="9.390 1.22 -7.469" rotation="0 135 0"></a-box>
+    <!-- tele dreta 90º -->
+    <a-obj-model src="#tele1" mtl="#tele-mtl" scale="5 5 5" position="15 1 3" rotation="0 460 0" shadow="cast:true"></a-obj-model>
+    <a-box color="#55828F" scale="4.1 2.65 1.1" position="14.810 1.220 2.296" rotation="0 460 0"></a-box>
+
+    <!-- exit -->
+    <a-box src = "#exit" scale="2.5 1 0" rotation = "0 180 0"  position = "0 3 13.1"></a-box>
+
+    <!-- ascensor -->
+    <a-obj-model src="#elevator-obj" mtl="#elevator-mtl" scale="0.5 0.5 0.5" position="0 -0.6 14.3" rotation="0 270 0"></a-obj-model>
+    <!-- botón ascensor -->
+    <a-box link="href: escena1.html;" position="1 0.5 13.6" scale="0.05 1 0.3" opacity = "0"></a-box>
+
+    <!-- terra -->
+    <a-plane width="100" height="100" color="white" position="0 -0.5 -4" rotation="-90 0 0" shadow="receive: true"></a-plane>
+    <!-- parets -->
+    <a-plane width="102" height="400" color="#dbdbdb" position="-52 -0.5 13.2" rotation="0 180 0" shadow="receive: true"></a-plane>
+    <a-plane width="102" height="400" color="#dbdbdb" position="52 -0.5 13.2" rotation="0 180 0" shadow="receive: true"></a-plane>
+    <a-plane width="100" height="106" color="#dbdbdb" position="0 54.8 13.2" rotation="0 180 0" shadow="receive: true"></a-plane>
+
+    <!-- videos -->
+    <a-box material="src:#farocki" position="-0.72 1.22 -9.90"   scale="4.1 2.65 1.1" video-handler></a-box>
+    <a-box material="src:#v" position="9.386 1.22 -7.469"   scale="4.1 2.65 1.1" loop="true" rotation="0 135 0" video-handler1></a-box>
+    <a-box material="src:#rick" position="14.79 1.220 2.296"   scale="4.1 2.65 1.1" loop="true" rotation="0 460 0" video-handler2></a-box>
+    <a-box material="src:#tedtalk" position="-10.39 1.22 -6.35"   scale="4.1 2.65 1.1" loop="true" rotation="0 225 0" video-handler3></a-box>
+    <a-box material="src:#pantalla" position="-14.744 1.220 3.733"   scale="4.1 2.65 1.1" loop="true" rotation="0 280 0" video-handler4></a-box>
+
+    <!-- cubos de encima de las teles con animación de rotación. Cada uno de ellos te lleva al link de la referencia -->
+    <a-box position="-0.735 4.352 -10.513" scale="0.35 0.35 0.35" color="white" animation="property: rotation; to:0 360 0; fill:forwards; dur: 3000; loop: true" box1></a-box>
+    <a-box position="9.816 4.352 -7.878" scale="0.35 0.35 0.35" color="white" animation="property: rotation; to:0 360 0; fill:forwards; dur: 3000; loop: true"  box2></a-box>
+    <a-box position="15.174 4.352 2.150" scale="0.35 0.35 0.35" color="white" animation="property: rotation; to:0 360 0; fill:forwards; dur: 3000; loop: true"  box3></a-box>
+    <a-box position="-15.083 4.352 3.775" scale="0.35 0.35 0.35" color="white" animation="property: rotation; to:0 360 0; fill:forwards; dur: 3000; loop: true"  box4></a-box>
+    <a-box position="-11.110 4.352 -6.979" scale="0.35 0.35 0.35" color="white" animation="property: rotation; to:0 360 0; fill:forwards; dur: 3000; loop: true"  box5></a-box>
+
+    <!-- sonido blanco para rellenar un poco el espacio sonoro -->
+    <a-sound src="media/audio/whitesound.mp3" autoplay="true" loop="true" volume="0.08"></a-sound>
+
+    <!-- texto ascensor-->
+    <a-text value="Pulsa un boton"
+            color="white"
+            font="mozillavr"
+            align="center"
+            position="1.1 0.5 14.2"
+            rotation="0 270 0"
+            scale="0.3 0.35 0.05">
+    </a-text>
+
+  </a-scene>
+
+  <!-- código de JavaScript para que los videos tan solo se reproduzcan al mirarlos. Hay un código por vídeo -->
+  <script type="text/javascript">
+    AFRAME.registerComponent('video-handler', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#farocki');
+          video.pause();
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+        el.addEventListener('mouseleave', function() {
+          video.pause();
+        });
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('video-handler1', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v');
+          video.pause();
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+        el.addEventListener('mouseleave', function() {
+          video.pause();
+        });
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('video-handler2', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#rick');
+          video.pause();
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+        el.addEventListener('mouseleave', function() {
+          video.pause();
+        });
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('video-handler3', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#tedtalk');
+          video.pause();
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+        el.addEventListener('mouseleave', function() {
+          video.pause();
+        });
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('video-handler4', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#pantalla');
+          video.pause();
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+        el.addEventListener('mouseleave', function() {
+          video.pause();
+        });
+      }
+    });
+  </script>
+
+  <!-- abrir vídeos en ventana nueva-->
+  <script>
+    AFRAME.registerComponent('box1', {
+      init: function() {
+        let el = this.el;
+        el.addEventListener('click', function() {
+          window.open('https://www.youtube.com/watch?v=Ig-DynpvZkE');
+        });
+      }
+    });
+  </script>
+
+  <script>
+    AFRAME.registerComponent('box2', {
+      init: function() {
+        let el = this.el;
+        el.addEventListener('click', function() {
+          window.open('https://youtu.be/6RRMgF8hpMQ');
+        });
+      }
+    });
+  </script>
+
+  <script>
+    AFRAME.registerComponent('box3', {
+      init: function() {
+        let el = this.el;
+        el.addEventListener('click', function() {
+          window.open('https://www.youtube.com/watch?v=6RRMgF8hpMQ');
+        });
+      }
+    });
+  </script>
+
+  <script>
+    AFRAME.registerComponent('box4', {
+      init: function() {
+        let el = this.el;
+        el.addEventListener('click', function() {
+          window.open('https://www.youtube.com/watch?v=YD4iuVglSnk');
+        });
+      }
+    });
+  </script>
+
+  <script>
+    AFRAME.registerComponent('box5', {
+      init: function() {
+        let el = this.el;
+        el.addEventListener('click', function() {
+          window.open('https://www.youtube.com/watch?v=Z0ztO86ImQg');
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,564 @@
+<html>
+<head>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+</head>
+
+<body>
+  <a-scene background="color:black">
+    <!-- camara i cursor -->
+    <a-entity camera look-controls wasd-controls>
+      <a-entity
+        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 4000; from: 0.1 0.1 0.1; to: 1 1 1"
+        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+        animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+        position="0 0 -0.75"
+        geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015;"
+        cursor="fuse: true; fuseTimeout: 2200">
+      </a-entity>
+    </a-entity>
+
+    <a-assets>
+      <a-assets-items id="elevator-mtl" src="media/3d/Elevator.mtl"></a-assets-items>
+      <a-assets-items id="elevator-obj" src="media/3d/Elevator.obj"></a-assets-items>
+
+      <!-- Media -->
+      <audio id="mus_asc" src="media/audio/musica_ascensor.mp3" preload="auto"></audio>
+      <audio id="wsound" src="media/audio/whitesound.mp3" preload="auto"></audio>
+
+      <video id="v1" autoplay src="media/video/interesante.mp4"></video>
+      <video id="v2" autoplay src="media/video/cocacola.mp4"></video>
+      <video id="v3" autoplay src="media/video/debate.mp4"></video>
+      <video id="v4" autoplay src="media/video/esteban.mp4"></video>
+      <video id="v5" autoplay src="media/video/interesante2.mp4"></video>
+      <video id="v6" autoplay src="media/video/tarot.mp4"></video>
+
+      <img id="i1" src="media/images/wipp.jpg"></img>
+      <img id="i2" src="media/images/acuarius.jpg"></img>
+      <img id="i3" src="media/images/adelgazar.jpg"></img>
+      <img id="i4" src="media/images/drink.jpg"></img>
+      <img id="i5" src="media/images/fanta.png"></img>
+      <img id="i6" src="media/images/fraude.jpg"></img>
+      <img id="i7" src="media/images/mcdo.jpg"></img>
+      <img id="i8" src="media/images/fraude2.jpg"></img>
+      <img id="i9" src="media/images/zumo.jpg"></img>
+      <img id="i10" autoplay src="media/images/premio.jpg"></img>
+      <img id="pausa" src="media/images/pausa.png"></img>
+      <img id="textu1" src="media/images/textu1.jpg"></img>
+      <img id="pared" src="media/images/pared.jpg"></img>
+      <img id="exit" src="media/images/exit.jpg"></img>
+      <img id="cross" src="media/images/cross.jpg"></img>
+      </a-assets>
+
+    <!-- particules -->
+    <a-entity position="0 2.25 -15" particle-system="color: grey,white; particleCount:10000; preset:dust"></a-entity>
+
+    <!-- llum -->
+    <a-entity light="type:point; castShadow:true; intensity:1; color:gray; distance:10;" position="0 4.5 -3"></a-entity>
+    <a-entity light="type:point; castShadow:true; intensity:1; color:gray; distance:10;" position="0 4.5 -9"></a-entity>
+    <a-entity light="type:point; castShadow:true; intensity:1; color:gray; distance:10;" position="0 4.5 -15"></a-entity>
+    <a-entity light="type:point; castShadow:true; intensity:1; color:gray; distance:15;" position="0 1.5 1.5"></a-entity>
+    <a-entity light="type:ambient; castShadow:true; intensity:1.2d; color:gray; distance:500;" position="0 0 -1"></a-entity>
+
+    <!-- ascensor -->
+    <a-obj-model src="#elevator-obj" mtl="#elevator-mtl" scale="0.5 0.5 0.5" position="0 -0.6 -19.2" rotation="0 90 0"></a-obj-model>
+    <!-- botón ascensor -->
+    <a-box link="href: escena3.html;" position="-1 0.5 -18.5" scale="0.05 1 0.3" opacity = "0"></a-box>
+
+    <!-- terra -->
+    <a-plane src = "#textu1" width="8" height="21" color="white" position="0 -0.5 -8.5" rotation="-90 0 0" shadow="receive: true"></a-plane>
+    <!-- fons-->
+    <a-plane width="3" height="4" color="#dbdbdb" position="-2.5 1 -18" rotation="0 0 0" shadow="receive: true"></a-plane>
+    <a-plane width="3" height="4" color="#dbdbdb" position="2.5 1 -18" rotation="0 0 0" shadow="receive: true"></a-plane>
+    <a-plane width="8" height="3" color="#dbdbdb" position="0 3.5 -18" rotation="0 0 0" shadow="receive: true"></a-plane>
+    <!-- parets laterals-->
+    <a-plane src = "#pared" width="19" height="5.5" position="-4 2.25 -8.5" rotation="0 90 0" shadow="receive: true"></a-plane>
+    <a-plane src = "#pared" width="19" height="5.5" position="4 2.25 -8.5" rotation="0 270 0" shadow="receive: true"></a-plane>
+    <!-- paret darrere-->
+    <a-plane src = "#pared" width="19" height="5.5" position="0 2.25 1" rotation="0 180 0" shadow="receive: true"></a-plane>
+    <!-- sostre-->
+    <a-plane width="19" height="8" color="#dbdbdb" position="0 5 -8.5" rotation="90 90 0" shadow="receive: true"></a-plane>
+
+    <!-- sonido blanco para rellenar un poco el espacio sonoro -->
+    <a-entity sound="src: #w_sound; autoplay: true; loop:true; volume:0.08"></a-entity>
+    <!-- musica ascensor -->
+    <a-entity sound="src: #mus_asc; autoplay: true; loop:true; volume:1.6" position="0 1 -18"></a-entity>
+
+    <a-box src = "#exit" scale="2.5 1 0" rotation = "0 0 0"  position = "0 3 -17.9"></a-box>
+    <!-- Instrucciones iniciales-->
+    <a-text value="Dirijete hacia el ascensor \n para acceder a la siguiente planta"
+            color="white"
+            font="mozillavr"
+            align="center"
+            position="0 0.1 -0.4"
+            scale="0.3 0.35 0.05"
+            geometry="primitive:plane; height: 1.2; width: 4"
+            material="color: gray; opacity: 0.8">
+    </a-text>
+    <!-- Apariciones de objetos-->
+    <a-box id = "ov1" ov1 src = "#v1" scale="3 2 0" rotation = "0 30 0"  position = "-2 0.5 -1.5"></a-box>
+    <a-box id = "pause1" pause1 src = "#pausa" scale="0.5 0.5 0" rotation = "0 30 0"  position = "-2 1.5 -1.49"></a-box>
+    <a-box id = "cross1" cross1 src = "#cross" scale="0.2 0.2 0" rotation = "0 30 0"  position = "-2 -0.4 -1.49"></a-box>
+
+    <a-box id = "oi1"    oi1    src = "#i1"    scale="1.7 1.5 0" rotation = "0 5 0" animation="property: position; from: 0 15 -2; to:-0 0.25 -1.48;  dur: 8000"></a-box>
+    <a-box id = "crossi1" crossi1 src = "#cross" scale="0.2 0.2 0" rotation = "0 5 0" animation="property: position; from: 0 15 -2; to:-0 1 -1.47;  dur: 8000"></a-box>
+
+    <a-box id = "ov2" ov2 src = "#v2" scale="3 2 0" rotation = "0 0 0" animation="property: position; from: 10 3 -6; to: 1 0.5 -5; dur: 13000"></a-box>
+    <a-box id = "pause2" pause2 src = "#pausa" scale="0.5 0.5 0" rotation = "0 0 0" animation="property: position; from: 10 3 -6; to: 1 1.5 -4.9; dur: 13000"></a-box>
+    <a-box id = "cross2" cross2 src = "#cross" scale="0.2 0.2 0" rotation = "0 0 0" animation="property: position; from: 10 3 -6; to: 1 -0.4 -4.9; dur: 13000"></a-box>
+
+    <a-box id = "oi3" oi3 src = "#i3" scale="3.5 2.1 0" rotation = "0 30 0" animation="property: position; from: -8 -1 -5; to:-2.4 0.5 -6.5;  dur: 18000"></a-box>
+    <a-box id = "crossi3" crossi3 src = "#cross" scale="0.2 0.2 0" rotation = "0 30 0" animation="property: position; from: -8 -1 -5; to:-2.4 -0.4 -6.4;  dur: 18000"></a-box>
+
+    <a-box id = "oi2" oi2 src = "#i2" scale="2 3 0" rotation = "0 -15 0" animation="property: position; from: 11 7 -8; to:3 1 -6.8;  dur: 22000"></a-box>
+    <a-box id = "crossi2" crossi2 src = "#cross" scale="0.2 0.2 0" rotation = "0 -15 0" animation="property: position; from: 11 7 -8; to:3 -0.4 -6.7;  dur: 22000"></a-box>
+
+    <a-box id = "ov3" ov3 src = "#v3" scale="3.7 2 0" rotation = "0 10 0"  animation="property: position; from: -10 2 -5; to:-0.5 0.5 -8;  dur: 24000"></a-box>
+    <a-box id = "pause3" pause3 src = "#pausa" scale="0.5 0.5 0" rotation = "0 10 0" animation="property: position; from: -10 2 -5; to: -0.5 1.5 -7.9; dur: 24000"></a-box>
+    <a-box id = "cross3" cross3 src = "#cross" scale="0.2 0.2 0" rotation = "0 10 0"  animation="property: position; from: -10 2 -5; to: -0.5 -0.4 -7.9; dur: 24000"></a-box>
+
+    <a-box id = "oi4" oi4 src = "#i4" scale="3 2 0" rotation = "0 -30 0"  animation="property: position; from: 18 2 -10; to:2.5 1 -8.5;  dur: 28000"></a-box>
+    <a-box id = "crossi4" crossi4 src = "#cross" scale="0.2 0.2 0" rotation = "0 -30 0"  animation="property: position; from: 18 2 -10; to:2.5 0.1 -8.4;  dur: 28000"></a-box>
+
+    <a-box id = "oi6" oi6 src = "#i6" scale="3 1.8 0" rotation = "0 -20 0"  animation="property: position; from: 20 9 -10; to:1.2 1 -9.7;  dur: 22000"></a-box>
+    <a-box id = "crossi6" crossi6 src = "#cross" scale="0.2 0.2 0" rotation = "0 -20 0"  animation="property: position; from: 20 9 -10; to:1.2 0.2 -9.6;  dur: 22000"></a-box>
+
+    <a-box id = "oi5" oi5 src = "#i5" scale="2 3 0" rotation = "0 10 0"  animation="property: position; from: -8 3 -16; to:-2 1.2 -10;  dur: 35000"></a-box>
+    <a-box id = "crossi5" crossi5 src = "#cross" scale="0.2 0.2 0" rotation = "0 10 0"  animation="property: position; from: -8 3 -16; to:-2 -0.2 -9.9;  dur: 35000"></a-box>
+
+    <a-box id = "ov4" ov4 src = "#v4" scale="3.7 2 0" rotation = "0 10 0"  animation="property: position; from: 9 -3 -15; to:2 0.5 -11;  dur: 40000"></a-box>
+    <a-box id = "pause4" pause4 src = "#pausa" scale="0.5 0.5 0" rotation = "0 10 0" animation="property: position; from: 9 -3 -15; to: 2 1.5 -10.9; dur: 40000"></a-box>
+    <a-box id = "cross4" cross4 src = "#cross" scale="0.2 0.2 0" rotation = "0 10 0" animation="property: position; from: 9 -3 -15; to: 2 -0.4 -10.9; dur: 40000"></a-box>
+
+    <a-box id = "oi7" oi7 src = "#i7" scale="5 3 0" rotation = "0 15 0"  animation="property: position; from: -8 10 -13; to:-1.2 0.7 -12;  dur: 43000"></a-box>
+    <a-box id = "crossi7" crossi7 src = "#cross" scale="0.2 0.2 0" rotation = "0 15 0"  animation="property: position; from: -8 10 -13; to:-1.2 -0.4 -11.9;  dur: 43000"></a-box>
+
+    <a-box id = "oi8" oi8 src = "#i8" scale="3.7 2 0" rotation = "0 -20 0"  animation="property: position; from: 20 -6 -14; to:2 1.1 -13;  dur: 46000"></a-box>
+    <a-box id = "crossi8" crossi8 src = "#cross" scale="0.2 0.2 0" rotation = "0 -20 0"  animation="property: position; from: 20 -6 -14; to:2 0.2 -12.9;  dur: 46000"></a-box>
+
+    <a-box id = "ov5" ov5 src = "#v5" scale="3.7 2 0" rotation = "0 -30 0"  animation="property: position; from: 15 30 -16; to:2 0.7 -15;  dur: 41000"></a-box>
+    <a-box id = "pause5" pause5 src = "#pausa" scale="0.5 0.5 0" rotation = "0 -30 0" animation="property: position; from: 15 30 -16; to: 2 1.7 -14.9; dur: 41000"></a-box>
+    <a-box id = "cross5" cross5 src = "#cross" scale="0.2 0.2 0" rotation = "0 -30 0" animation="property: position; from: 15 30 -16; to: 2 -0.2 -14.9; dur: 41000"></a-box>
+
+    <a-box id = "oi9" oi9 src = "#i9" scale="3.7 2 0" rotation = "0 15 0"  animation="property: position; from: -7 20 -14; to:-2.3 0.5 -15;  dur: 48000"></a-box>
+    <a-box id = "crossi9" crossi9 src = "#cross" scale="0.2 0.2 0" rotation = "0 15 0"  animation="property: position; from: -7 20 -14; to:-2.3 -0.4 -14.9;  dur: 48000"></a-box>
+
+    <a-box id = "ov6" ov6 src = "#v6" scale="3.7 3 0" rotation = "0 30 0"  animation="property: position; from: -14 -6 -18; to:-1.9 1 -16.6;  dur: 45000"></a-box>
+    <a-box id = "pause6" pause6 src = "#pausa" scale="0.5 0.5 0" rotation = "0 30 0" animation="property: position; from: -14 -6 -18; to: -1.9 2.5 -16.5; dur: 45000"></a-box>
+    <a-box id = "cross6" cross6 src = "#cross" scale="0.2 0.2 0" rotation = "0 30 0" animation="property: position; from: -14 -6 -18; to: -1.9 -0.4 -16.5; dur: 45000"></a-box>
+
+    <a-box id = "oi10" oi10 src = "#i10" scale="2.5 2 0" rotation = "0 -15 0"  animation="property: position; from: 14 0.6 -25; to:1 1 -17.2;  dur: 50000"></a-box>
+    <a-box id = "crossi10" crossi10 src = "#cross" scale="0.2 0.2 0" rotation = "0 -15 0"  animation="property: position; from: 14 0.6 -25; to:1 0.1 -17.1;  dur: 50000"></a-box>
+
+<!-- texto ascensor-->
+<a-text value="Pulsa un boton"
+        color="white"
+        font="mozillavr"
+        align="center"
+        position="-1.1 0.5 -19.085"
+        rotation="0 90 0"
+        scale="0.3 0.35 0.05">
+</a-text>
+
+  </a-scene>
+
+  <!-- video 1-->
+  <script type="text/javascript">
+    AFRAME.registerComponent('pause1', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v1');
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+        el.addEventListener('click', function() {
+          video.pause();
+        });
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('ov1', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v1');
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+      }
+    });
+  </script>
+
+  <script>
+    AFRAME.registerComponent("cross1", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let video = document.querySelector('#v1');
+          video.pause();
+          let entity1 = document.querySelector("#ov1")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#cross1")
+          entity2.setAttribute("position", "0 -500 -10")
+          let entity3 = document.querySelector("#pause1")
+          entity3.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+
+  <!-- video 2-->
+  <script type="text/javascript">
+    AFRAME.registerComponent('pause2', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v2');
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+        el.addEventListener('click', function() {
+          video.pause();
+        });
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('ov2', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v2');
+        video.pause();
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+      }
+    });
+  </script>
+
+  <script>
+    AFRAME.registerComponent("cross2", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let video = document.querySelector('#v2');
+          video.pause();
+          let entity1 = document.querySelector("#ov2")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#cross2")
+          entity2.setAttribute("position", "0 -500 -10")
+          let entity3 = document.querySelector("#pause2")
+          entity3.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+
+  <!-- video 3-->
+  <script type="text/javascript">
+    AFRAME.registerComponent('pause3', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v3');
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+        el.addEventListener('click', function() {
+          video.pause();
+        });
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('ov3', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v3');
+        video.pause();
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+      }
+    });
+  </script>
+
+  <script>
+    AFRAME.registerComponent("cross3", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let video = document.querySelector('#v3');
+          video.pause();
+          let entity1 = document.querySelector("#ov3")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#cross3")
+          entity2.setAttribute("position", "0 -500 -10")
+          let entity3 = document.querySelector("#pause3")
+          entity3.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+
+  <!-- video 4-->
+  <script type="text/javascript">
+    AFRAME.registerComponent('pause4', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v4');
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+        el.addEventListener('click', function() {
+          video.pause();
+        });
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('ov4', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v4');
+        video.pause();
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+      }
+    });
+  </script>
+
+  <script>
+    AFRAME.registerComponent("cross4", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let video = document.querySelector('#v4');
+          video.pause();
+          let entity1 = document.querySelector("#ov4")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#cross4")
+          entity2.setAttribute("position", "0 -500 -10")
+          let entity3 = document.querySelector("#pause4")
+          entity3.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+
+  <!-- video 5-->
+  <script type="text/javascript">
+    AFRAME.registerComponent('pause5', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v5');
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+        el.addEventListener('click', function() {
+          video.pause();
+        });
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('ov5', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v5');
+        video.pause();
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+      }
+    });
+  </script>
+
+  <script>
+    AFRAME.registerComponent("cross5", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let video = document.querySelector('#v5');
+          video.pause();
+          let entity1 = document.querySelector("#ov5")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#cross5")
+          entity2.setAttribute("position", "0 -500 -10")
+          let entity3 = document.querySelector("#pause5")
+          entity3.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+
+  <!-- video 6-->
+  <script type="text/javascript">
+    AFRAME.registerComponent('pause6', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v6');
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+        el.addEventListener('click', function() {
+          video.pause();
+        });
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    AFRAME.registerComponent('ov6', {
+      init: function() {
+        let el = this.el;
+        let video = document.querySelector('#v6');
+        video.pause();
+        el.addEventListener('mouseenter', function() {
+          video.play();
+        });
+      }
+    });
+  </script>
+
+  <script>
+    AFRAME.registerComponent("cross6", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let video = document.querySelector('#v6');
+          video.pause();
+          let entity1 = document.querySelector("#ov6")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#cross6")
+          entity2.setAttribute("position", "0 -500 -10")
+          let entity3 = document.querySelector("#pause6")
+          entity3.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+
+  <!-- imagenes -->
+  <script>
+    AFRAME.registerComponent("crossi1", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity1 = document.querySelector("#oi1")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#crossi1")
+          entity2.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+  <script>
+    AFRAME.registerComponent("crossi2", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity1 = document.querySelector("#oi2")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#crossi2")
+          entity2.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+  <script>
+    AFRAME.registerComponent("crossi3", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity1 = document.querySelector("#oi3")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#crossi3")
+          entity2.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+  <script>
+    AFRAME.registerComponent("crossi4", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity1 = document.querySelector("#oi4")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#crossi4")
+          entity2.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+  <script>
+    AFRAME.registerComponent("crossi5", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity1 = document.querySelector("#oi5")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#crossi5")
+          entity2.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+  <script>
+    AFRAME.registerComponent("crossi6", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity1 = document.querySelector("#oi6")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#crossi6")
+          entity2.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+  <script>
+    AFRAME.registerComponent("crossi7", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity1 = document.querySelector("#oi7")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#crossi7")
+          entity2.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+  <script>
+    AFRAME.registerComponent("crossi8", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity1 = document.querySelector("#oi8")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#crossi8")
+          entity2.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+  <script>
+    AFRAME.registerComponent("crossi9", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity1 = document.querySelector("#oi9")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#crossi9")
+          entity2.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+  <script>
+    AFRAME.registerComponent("crossi10", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity1 = document.querySelector("#oi10")
+          entity1.setAttribute("position", "0 -500 -10")
+          let entity2 = document.querySelector("#crossi10")
+          entity2.setAttribute("position", "0 -500 -10")
+        })
+      }
+    })
+  </script>
+
+</body>
+</html>

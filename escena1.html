@@ -1,0 +1,275 @@
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>s
+</head>
+
+<body>
+
+  <a-scene>
+    <a-assets>
+      <!-- assets models 3d-->
+      <a-assets-items id="room-obj" src="media/3d/room.obj"></a-assets-items>
+      <a-assets-items id="room-mtl" src="media/3d/room.mtl"></a-assets-items>
+      <a-assets-items id="window-obj" src="media/3d/window.obj"></a-assets-items>
+      <a-assets-items id="window-mtl" src="media/3d/window.mtl"></a-assets-items>
+      <a-assets-items id="phone-obj" src="media/3d/phone.obj"></a-assets-items>
+      <a-assets-items id="phone-mtl" src="media/3d/phone.mtl"></a-assets-items>
+      <a-assets-items id="tv-obj" src="media/3d/tv.obj"></a-assets-items>
+      <a-assets-items id="tv-mtl" src="media/3d/tv.mtl"></a-assets-items>
+
+      <!-- assets audio -->
+      <audio id="wind" src="media/audio/wind.mp3" preload="auto"></audio>
+      <audio id="birds1" src="media/audio/birds1.mp3" preload="auto"></audio>
+      <audio id="birds2" src="media/audio/birds2.mp3" preload="auto"></audio>
+      <audio id="skype" src="media/audio/skypetone.mp3" preload="auto"></audio>
+      <audio id="vibration" src="media/audio/vibration.mp3" preload="auto"></audio>
+      <audio id="noti" src="media/audio/noti.mp3" preload="auto"></audio>
+      <audio id="news" src="media/audio/news1.mp3" preload="auto"></audio>
+      <audio id="wallapop" src="media/audio/wallapop.mp3" preload="auto"></audio>
+      <audio id="ellen" src="media/audio/ellen.mp3" preload="auto"></audio>
+
+      <!-- assets videos-->
+      <video id="trump" src="media/video/trump.mp4" loop="true" autoplay></video>
+      <video id="clock" src="media/video/clock.mp4" loop="true" autoplay></video>
+      <video id="amazon" src="media/video/amazon.mp4" loop="true" autoplay></video>
+      <video id="twitter" src="media/video/twitter.mp4" loop="true" autoplay></video>
+
+
+    </a-assets>
+
+    <!-- boton siguiente escena-->
+    <a-box link="href: escena2.html;" scale="0.2 0.2 0.2" color="white" position="2 -0.1 2" rotation="0 0 0" shadow="cast:false" opacity = "0"></a-box>
+
+    <!-- Aquí tenemos definida la cámara y el cursor-->
+    <a-entity camera look-controls wasd-controls>
+      <a-entity animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+                position="0 0 -0.75" geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015;" cursor="fuse: true; fuseTimeout: 2200">
+      </a-entity>
+    </a-entity>
+
+    <!-- video exterior 360-->
+    <a-sky src="media/video_360/forestmute.mp4" loop="true" rotation="0 5 0" autoplay></a-sky>
+
+    <!-- llum -->
+    <a-entity light="type:point; castShadow:true; intensity:1.7; color:#887877; distance:200;" position="0 1.5 0"></a-entity>
+
+
+
+    <!-- models 3d i parets de l'habitació-->
+    <a-obj-model src="#room-obj" mtl="#room-mtl" scale="1 1 1" position="0 -0.5 0" rotation="0 90 0" shadow="cast:true"></a-obj-model>
+    <a-obj-model src="#window-obj" mtl="#window-mtl" scale="2.5 2.5 2.5" position="0.75 0.5 -2" rotation="0 90 0" shadow="cast:true"></a-obj-model>
+    <a-obj-model src="#window-obj" mtl="#window-mtl" scale="2.5 2.5 2.5" position="2.3 0.5 0-5" rotation="0 0 0" shadow="cast:true"></a-obj-model>
+    <a-plane color="#747474" width="1.5" height="4" color="gray" position="-0.7 0.6 -2" rotation="0 0 0" shadow="cast:true"></a-plane>
+    <a-plane color="#747474" width="1" height="4" color="gray" position="1.9 0.6 -2" rotation="0 0 0" shadow="cast:true"></a-plane>
+    <a-plane color="#747474" width="2.8" height="1.2" color="gray" position="0 -0.8 -2" rotation="0 0 0" shadow="cast:true"></a-plane>
+    <a-plane color="#747474" width="2.8" height="1.2" color="gray" position="0 1.8 -2" rotation="0 0 0" shadow="cast:true"></a-plane>
+    <a-plane color="#586972" width="1.3" height="4" color="gray" position="2.35 0.6 -1.35" rotation="0 -90 0" shadow="cast:true"></a-plane>
+    <a-plane color="#586972" width="1.4" height="4" color="gray" position="2.35 0.6 1.3" rotation="0 -90 0" shadow="cast:true"></a-plane>
+    <a-plane color="#586972" width="1.5" height="1" color="gray" position="2.35 -0.65 0" rotation="0 -90 0" shadow="cast:true"></a-plane>
+    <a-plane color="#586972" width="1.5" height="1.5" color="gray" position="2.35 2 0" rotation="0 -90 0" shadow="cast:true"></a-plane>
+    <a-plane color="white" width="5" height="5" color="gray" position="0 1.9 0" rotation="90 0 0" shadow="cast:true"></a-plane>
+    <a-box scale="0.09 5 0.03" color="white" position="0 1.87 -2" rotation="0 0 90" shadow="cast:true"></a-box>
+    <a-box scale="0.09 5 0.1" color="white" position="2.38 1.87 -0.5" rotation="0 90 90" shadow="cast:true"></a-box>
+    <a-obj-model src="#phone-obj" mtl="#phone-mtl" scale="0.1 0.1 0.1" position="0.5 -0.6 1" rotation="90 30 0" shadow="cast:true"></a-obj-model>
+    <a-obj-model src="#tv-obj" mtl="#tv-mtl" scale="0.004 0.004 0.004" position="-0.13 0.35 1.95" rotation="90 180 0" shadow="cast:true"></a-obj-model>
+
+
+    <!-- foto del marco-->
+    <a-plane src="media/images/foto.jpg" width="0.14" height="0.24" position="-0.972 -0.329 -0.434" rotation="-7.441 108.731 -3.049"></a-plane>
+
+    <!-- sons bosc-->
+    <a-entity sound="src: #wind; autoplay: true; loop:true; volume:7" position="4 0 -10"></a-entity>
+    <a-entity sound="src: #birds1; autoplay: true; loop:true; volume:8" position="0 0 -10"></a-entity>
+    <a-entity sound="src: #birds2; autoplay: true; loop:true; volume:8" position="0 0 10"></a-entity>
+
+    <!-- sons estresants-->
+    <a-entity sound="src: #skype; autoplay: false; loop:true; volume:0.05" position="-1 0 -1"></a-entity>
+    <a-entity sound="src: #vibration; autoplay: false; loop:true; volume:7" position="0.5 -0.6 1"></a-entity>
+    <a-entity sound="src: #noti; autoplay: false; loop:true; volume:3" position="0.5 -0.6 1"></a-entity>
+    <a-entity sound="src: #news; autoplay: false; loop:true; volume:1" position="-0.13 0.35 1.95"></a-entity>
+    <a-entity sound="src: #wallapop; autoplay: false; loop:true; volume:1" position="4 0 -2"></a-entity>
+    <a-entity sound="src: #ellen; autoplay: false; loop:true; volume:1" position="4 0 -2"></a-entity>
+
+    <!-- videos-->
+    <a-plane id="videotrump" material="src:#trump" position="-0.154 0.474 1.899" scale="1.253 0.676 0.806" rotation="0 180 0" loop="true" visible="false"></a-plane>
+    <a-plane id="videoclock" material="src:#clock" position="-0.979 -0.64 0.503" scale="0.142 0.08 0.806" rotation="340 67.717 0" loop="true" visible="false"></a-plane>
+    <a-plane id="videoamazon" material="src:#amazon" position="-0.851 -0.064 -0.955" scale="0.533 0.383 0.500" rotation="0 90 0" loop="true" visible="false"></a-plane>
+
+    <!-- video movil con componentes-->
+    <a-plane id="videotwitter" material="src:#twitter" position="0.503 -0.591 1.006" scale="0.128 0.066 0.498" rotation="-90.000 -239.446 0.000" visible="false"
+    audiohandler audiohandler1 audiohandler2 audiohandler3 audiohandler4 audiohandler5
+    desa desa1 desa2 desa3 desa4 desa5></a-plane>
+
+  <!-- plano invisible sobre la puerta para poder hacerle click y salir-->
+    <a-plane id="puerta" color="red" position="2.012 -0.087 1.911" scale="0.164 0.157 1" rotation="0 180 0" visible="false"  link="href: escena2.html; title: CONTINUAR"></a-plane>
+
+<!-- póster-->
+  <a-plane src="media/images/toteking.jpg" position="-1.282 0.6 -1.387" scale="0.480 0.613 0.5" rotation="0 90 0"></a-plane>
+
+  <!-- texto-->
+    <a-entity id="textmovil" text="font: mozillavr; value: Parece que tienes un mensaje.
+    Clica en el movil para responder." position="0.272 -0.2 1.193" rotation="0 180 0" align="center" visible="true"></a-entity>
+    <a-entity id="textsalir" text="font: mozillavr; value: Clica en el pomo de la puerta \n para salir de la habitacion."   align="center" anchor="center" scale="1.3 1.3 1.3" position="1.437 1.215 1.876" rotation="0 180 0" align="center" visible="false"></a-entity>
+  </a-scene>
+
+
+  <!-- scripts per fer que els audios comencin al tocar el video de twitter-->
+  <script>
+    AFRAME.registerComponent('audiohandler', {
+      init: function() {
+        let playing = false;
+        let audio = document.querySelector("#skype");
+        this.el.addEventListener('click', () => {
+          if (!playing) {
+            audio.play();
+          }
+        });
+      }
+    })
+  </script>
+
+  <script>
+    AFRAME.registerComponent('audiohandler1', {
+      init: function() {
+        let playing = false;
+        let audio = document.querySelector("#vibration");
+        this.el.addEventListener('click', () => {
+          if (!playing) {
+            audio.play();
+          }
+        });
+      }
+    })
+  </script>
+
+  <script>
+    AFRAME.registerComponent('audiohandler2', {
+      init: function() {
+        let playing = false;
+        let audio = document.querySelector("#noti");
+        this.el.addEventListener('click', () => {
+          if (!playing) {
+            audio.play();
+          }
+        });
+      }
+    })
+  </script>
+
+  <script>
+    AFRAME.registerComponent('audiohandler3', {
+      init: function() {
+        let playing = false;
+        let audio = document.querySelector("#news");
+        this.el.addEventListener('click', () => {
+          if (!playing) {
+            audio.play();
+          }
+        });
+      }
+    })
+  </script>
+
+  <script>
+    AFRAME.registerComponent('audiohandler4', {
+      init: function() {
+        let playing = false;
+        let audio = document.querySelector("#wallapop");
+        this.el.addEventListener('click', () => {
+          if (!playing) {
+            audio.play();
+          }
+        });
+      }
+    })
+  </script>
+
+  <script>
+    AFRAME.registerComponent('audiohandler5', {
+      init: function() {
+        let playing = false;
+        let audio = document.querySelector("#ellen");
+        this.el.addEventListener('click', () => {
+          if (!playing) {
+            audio.play();
+          }
+        });
+      }
+    })
+  </script>
+
+  <!-- scripts per fer que els videos es visibilitzin al tocar el video de twitter-->
+  <script>
+    AFRAME.registerComponent("desa", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity = document.querySelector("#videotrump")
+          entity.setAttribute("visible", !entity.getAttribute("visible"))
+        })
+      }
+    })
+  </script>
+
+  <script>
+    AFRAME.registerComponent("desa1", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity = document.querySelector("#videoamazon")
+          entity.setAttribute("visible", !entity.getAttribute("visible"))
+        })
+      }
+    })
+  </script>
+
+  <script>
+    AFRAME.registerComponent("desa2", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity = document.querySelector("#videoclock")
+          entity.setAttribute("visible", !entity.getAttribute("visible"))
+        })
+      }
+    })
+  </script>
+
+  <script>
+    AFRAME.registerComponent("desa3", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity = document.querySelector("#videotwitter")
+          entity.setAttribute("visible", !entity.getAttribute("visible"))
+        })
+      }
+    })
+  </script>
+
+  <!-- script per fer que el text es visibilitzi o invisibilitzi al clicar el video de twitter-->
+  <script>
+    AFRAME.registerComponent("desa4", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity = document.querySelector("#textmovil")
+          entity.setAttribute("visible", !entity.getAttribute("visible"))
+        })
+      }
+    })
+  </script>
+
+  <script>
+    AFRAME.registerComponent("desa5", {
+      init: function() {
+        this.el.addEventListener("click", (e) => {
+          let entity = document.querySelector("#textsalir")
+          entity.setAttribute("visible", !entity.getAttribute("visible"))
+        })
+      }
+    })
+  </script>
+
+
+</body>
+
+</html>
