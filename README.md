@@ -1,12 +1,12 @@
-# Información del repositorio
-En esta práctica hemos desarrollado una historia interactiva con 3 escenas. Ha sido desarrollada en html, utilizando el framework de A-Frame.
+# Repository information
+In this lab we have developed an interactive story with 3 scenes. It has been developed in html, using the A-Frame framework.
 
-Además de los archivos, encontramos un vídeo de demostración.
+In addition to the files, we found a demonstration video.
 
-###  Concepto de la historia
-La idea de las dos primeras escenas es presentar situaciones en las que vemos la cantidad de estímulos y distracciones que estamos recibiendo constantemente en nuestro día a día (publicidad, multimedia, etc.), mientras que en la útlima nos encontramos un nuevo espacio con distintos vídeos que nos hacen reflexionar.
+### Story concept
+The idea of the first two scenes is to present situations in which we see the amount of stimuli and distractions that we are constantly receiving in our daily lives (advertising, multimedia, etc.), while in the last one we find a new space with different videos that make us reflect.
 
-### Instrucciones
-Descargar el proyecto y ejecutar la primera escena desde un servidor local. Por ejemplo, se puede instalar el paquete *atom-live-server-plus* desde Atom y ejecutarlo desde ahí.
+### Instructions
+Download the project and run the first scene from a local server. For example, you can install the *atom-live-server-plus* package from Atom and run it from there.
 
-Para desplazarnos en el entorno se utilizan las teclas WASD y para mover la vista, el ratón. Para interactuar con los objetos hay que centrar el cursor de la vista en el objetivo durante unos segundos.
+To move in the environment use the WASD keys and to move the view, the mouse. To interact with objects, center the view cursor on the target for a few seconds.
